@@ -1,6 +1,7 @@
 package search.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import search.selenium.BaseSelenium;
 
 /**
@@ -8,7 +9,7 @@ import search.selenium.BaseSelenium;
  */
 public class CartPage extends BaseSelenium {
 
-    public int productsNumberCount() {
-        return driver.findElements(By.xpath("//div[@id='ShopCart']/div/div[contains(@id,'sellerBucket')]")).size();
+    public WebElement productsByNumber(String number) {
+        return driver.findElement(By.xpath("//div[@id='ShopCart']/div/div[contains(@id,'sellerBucket')][" + number + "]"));
     }
 }

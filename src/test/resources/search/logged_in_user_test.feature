@@ -1,4 +1,4 @@
-Feature: Demo examples
+Feature: Logged in user tests
 
   Background:
     Given Navigate to site and switch site to English
@@ -21,6 +21,17 @@ Feature: Demo examples
    # Then  user go to crd and verify count of items
     #Then user verifies that results displayed
 
+  Scenario Outline: User can navigate to the necessary page
+    Given I set search request "<request>"
+    When I perfom search
+    Then user verifies that page "1" is selected
+    When user click on "<page>"
+    Then user verifies that page "<page>" is selected
+    Examples:
+      | request        | page |
+      | iPhone 4S      | 2    |
+      | Samsung Galaxy | 3    |
+
   Scenario Outline:User can add single product to card
     Given I set search request "<request>"
     When I perfom search
@@ -29,9 +40,9 @@ Feature: Demo examples
     Then user verifies that checkout page is opened
 
     Examples:
-      | request        | item    |
-      | iPhone 4S      | 2       |
-      | Samsung Galaxy | 3       |
+      | request        | item |
+      | iPhone 4S      | 2    |
+      | Samsung Galaxy | 3    |
 
   Scenario Outline: Running a Full Text Quick Search
     Given I set search request "<request>"

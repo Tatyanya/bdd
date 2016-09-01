@@ -23,6 +23,9 @@ public class TopMenu extends BaseSelenium {
     private WebElement register() {
         return driver.findElement(By.xpath("//div[@id='gh-top']//span[@id='gh-ug-flex']/a"));
     }
+    public WebElement profileUser() {
+        return driver.findElement(By.id("gh-ug"));
+    }
 
     public WebElement signInLink(){
         return driver.findElement(By.xpath("//div[@id='gh-top']//span[@id='gh-ug']/a"));
@@ -53,6 +56,7 @@ public class TopMenu extends BaseSelenium {
         public void logOut() {
         actions.moveToElement(userMenu()).build().perform();
         if (isSingOuLinkDisplayed()) {
+            actions.moveToElement(profileUser()).build().perform();
             signOutLink().click();
             LOG.info("User loged out");
         }

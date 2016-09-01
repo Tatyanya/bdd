@@ -92,8 +92,8 @@ public class BaseStepDef extends BaseSelenium {
 
     @And("^user click to (buy now|add to cart) button$")
     public void userClickToBuyNowButton(String name) throws Throwable {
+        productPage.applyProductParameters();
         if (name.contains("now")) {
-            productPage.applyProductParameters();
             productPage.buyItNowButton().click();
         } else if (name.contains("add")) {
             productPage.addToCartButton().click();
@@ -109,5 +109,18 @@ public class BaseStepDef extends BaseSelenium {
     @Then("^user verifies that checkout page is opened$")
     public void userVerifiesThatCheckoutPageIsOpened() throws Throwable {
         assertTrue(driver.getCurrentUrl().contains("mbuy"));
+    }
+
+    @When("^user click on \"([^\"]*)\"$")
+    public void userClickOn(String arg0) throws Throwable {
+        resultPage.paginationPageByNumber(arg0).click();
+        waitForPageToLoad();
+    }
+
+    @Given("^logout if user is logged in$")
+    public void logoutIfUserIsLoggedIn() throws Throwable {
+        if (!topMenu.iSignInLinkDisplayed()) {
+            userLoggedOut();
+        }
     }
 }
