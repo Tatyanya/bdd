@@ -21,6 +21,15 @@ Feature: Logged in user tests
    # Then  user go to crd and verify count of items
     #Then user verifies that results displayed
 
+  Scenario:User can add single product to card
+    Given I set search request "iPhone 4S"
+    When I perfom search
+    And user select item "1" from results list
+    And user click to buy now button
+    Then user verifies that checkout page is opened
+    Then  user go to crd and verify that last item contains "iPhone 4S"
+
+
   Scenario Outline: User can navigate to the necessary page
     Given I set search request "<request>"
     When I perfom search

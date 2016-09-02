@@ -100,10 +100,9 @@ public class BaseStepDef extends BaseSelenium {
         }
     }
 
-    @Then("^user go to crd and verify count of items$")
+    @Then("^user go to crds$")
     public void userGoToCrdAndVerifyCountOfItems() throws Throwable {
-        topMenu.cartLink().click();
-
+        cartPage.goToCardLink().click();
     }
 
     @Then("^user verifies that checkout page is opened$")
@@ -122,5 +121,13 @@ public class BaseStepDef extends BaseSelenium {
         if (!topMenu.iSignInLinkDisplayed()) {
             userLoggedOut();
         }
+    }
+
+    @Then("^user go to crd and verify that last item contains \"([^\"]*)\"$")
+    public void userGoToCrdAndVerifyThatLastItemContains(String arg0) throws Throwable {
+        cartPage.goToCardLink().click();
+        waitForPageToLoad();
+        String firstSnippet = cartPage.getProductTitleByNumber("1");
+        assertTrue(firstSnippet.contains(arg0.toLowerCase()));
     }
 }

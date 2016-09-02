@@ -9,7 +9,16 @@ import search.selenium.BaseSelenium;
  */
 public class CartPage extends BaseSelenium {
 
-    public WebElement productsByNumber(String number) {
+    public WebElement productByNumber(String number) {
         return driver.findElement(By.xpath("//div[@id='ShopCart']/div/div[contains(@id,'sellerBucket')][" + number + "]"));
     }
+
+    public String getProductTitleByNumber(String number) {
+        return driver.findElement(By.xpath("//div[@id='ShopCart']/div/div[contains(@id,'sellerBucket')][" + number + "]//div[contains(@class,'itemInfoColcart')]//span/a")).getText().toLowerCase();
+    }
+
+    public WebElement goToCardLink() {
+        return driver.findElement(By.xpath("//div[@class='cart-link-text']/a"));
+    }
 }
+
